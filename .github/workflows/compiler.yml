@@ -18,7 +18,8 @@ jobs:
       - name: Clone CDDA
         uses: actions/checkout@v3
         with:
-          repository: CleverRaven/Cataclysm-DDA
+          # repository: CleverRaven/Cataclysm-DDA
+          repository: casswedson/Cataclysm-DDA
           fetch-depth: 1
           ref: master
       - run: |
