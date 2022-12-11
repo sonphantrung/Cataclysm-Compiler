@@ -26,16 +26,25 @@ jobs:
       - run: |
           sudo apt-get update
           sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev clang ccache
+
+      # - name: Install Qt
+      #   uses: jurplel/install-qt-action@v3
       - name: ccache
         uses: hendrikmuhs/ccache-action@v1.2
       - name: Build
         run: |
           make -j 10 ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
+          # make object_creator -j 10 RELEASE=1 CCACHE=1
+          # ls -al
+          # ls -al object_creator/
+          # mv ./cataclysm.a object_creator/
           # ccache -C
       - name: Package & post
         # zip -r object-creator-bundle.zip object_creator/
         run: |
+          # zip -r object-creator-bundle.zip object_creator/
           zip cataclysm-tiles.zip cataclysm-tiles
+          # path: ./object-creator-bundle.zip
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
