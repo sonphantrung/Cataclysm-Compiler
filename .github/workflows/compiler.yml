@@ -27,22 +27,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev clang ccache
 
-      # - name: Install Qt
-      #   uses: jurplel/install-qt-action@v3
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
       - name: ccache
         uses: hendrikmuhs/ccache-action@v1.2
       - name: Build
         run: |
-          make -j 10 ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
-          # make object_creator -j 10 RELEASE=1 CCACHE=1 LDFLAGS="--static -static-libgcc -static-libstdc++"
+          # make -j 10 ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
+          make object_creator -j 10 RELEASE=1 CCACHE=1 CXXFLAGS="-static"
           # ccache -C
       - name: Package & post
         run: |
-          # zip -r object-creator.zip object_creator/
-          zip cataclysm-tiles.zip cataclysm-tiles
+          zip -r object-creator.zip object_creator/
+          # zip cataclysm-tiles.zip cataclysm-tiles
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: cataclysm-tiles-binary
-          path: ./cataclysm-tiles.zip
-          # path: ./object-creator.zip
+          # path: ./cataclysm-tiles.zip
+          path: ./object-creator.zip
