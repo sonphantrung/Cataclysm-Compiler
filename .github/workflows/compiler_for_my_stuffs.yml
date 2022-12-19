@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: cataclysm-build
+  group: cataclysm-build-a
   cancel-in-progress: true
 
 jobs:
