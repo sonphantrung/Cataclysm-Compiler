@@ -1,0 +1,53 @@
+# References: https://github.com/CleverRaven/Cataclysm-DDA/blob/master/.github/workflows/matrix.yml
+name: Cataclysm Compiler
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+concurrency:
+  group: cataclysm-build
+  cancel-in-progress: true
+
+jobs:
+  linux-compiler:
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v3
+      - name: Clone CDDA
+        uses: actions/checkout@v3
+        with:
+          repository: CleverRaven/Cataclysm-DDA
+          # repository: casswedson/Cataclysm-DDA
+          fetch-depth: 1
+          ref: force-replace
+      - run: |
+          sudo apt update
+          sudo apt install astyle autoconf automake autopoint bash bison bzip2 cmake flex gettext git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev libtool libltdl-dev libssl-dev libxml-parser-perl lzip make mingw-w64 openssl p7zip-full patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386 libtool-bin
+          cd mxe
+          make -j$((`nproc`+0)) MXE_TARGETS='i686-w64-mingw32.static' MXE_PLUGIN_DIRS=plugins/gcc11 sdl2 sdl2_ttf sdl2_image sdl2_mixer gettext
+          wget https://github.com/Qrox/libbacktrace/releases/download/2020-01-03/libbacktrace-i686-w64-mingw32.tar.gz
+          tar -xzf libbacktrace-i686-w64-mingw32.tar.gz --exclude=LICENSE -C ~/src/mxe/usr/i686-w64-mingw32.static
+
+      # - name: Install Qt
+      #   uses: jurplel/install-qt-action@v3
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+      - name: Build
+        run: |
+          export PLATFORM_32="~/src/mxe/usr/bin/i686-w64-mingw32.static-"
+          make -j 10 ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
+          # make object_creator -j 10 RELEASE=1 CCACHE=1 CXXFLAGS="-static -static-libgcc -static-libstdc++"
+          # ccache -C
+      - name: Package & post
+        run: |
+          # zip -r object-creator.zip object_creator/
+          # zip cataclysm-tiles.zip cataclysm-tiles
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cataclysm-tiles-binary
+          path: ./cataclysm-tiles.zip
+          # path: ./object-creator.zip
