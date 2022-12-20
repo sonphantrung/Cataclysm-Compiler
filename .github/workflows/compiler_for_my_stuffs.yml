@@ -35,12 +35,10 @@ jobs:
 
       # - name: Install Qt
       #   uses: jurplel/install-qt-action@v3
-      - name: ccache
-        uses: hendrikmuhs/ccache-action@v1.2
       - name: Build
         run: |
           export PLATFORM_32="./mxe/usr/bin/x86_64-w64-mingw32.static-"
-          make -j 10 CROSS="${PLATFORM_32}" ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
+          make -j 10 CROSS="${PLATFORM_32}" ASTYLE=0 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
           # make object_creator -j 10 RELEASE=1 CCACHE=1 CXXFLAGS="-static -static-libgcc -static-libstdc++"
           # ccache -C
       - name: Package & post
