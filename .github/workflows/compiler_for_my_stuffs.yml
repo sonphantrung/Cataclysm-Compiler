@@ -31,7 +31,7 @@ jobs:
           make -j$((`nproc`+0)) MXE_TARGETS='i686-w64-mingw32.static' MXE_PLUGIN_DIRS=plugins/gcc11 sdl2 sdl2_ttf sdl2_image sdl2_mixer gettext
           cd ..
           wget https://github.com/Qrox/libbacktrace/releases/download/2020-01-03/libbacktrace-i686-w64-mingw32.tar.gz
-          tar -xzf libbacktrace-i686-w64-mingw32.tar.gz --exclude=LICENSE -C ~/src/mxe/usr/i686-w64-mingw32.static
+          tar -xzf libbacktrace-i686-w64-mingw32.tar.gz --exclude=LICENSE -C ~/mxe/usr/i686-w64-mingw32.static
 
       # - name: Install Qt
       #   uses: jurplel/install-qt-action@v3
