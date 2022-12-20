@@ -31,7 +31,7 @@ jobs:
           make -j$((`nproc`+0)) MXE_TARGETS='i686-w64-mingw32.static' MXE_PLUGIN_DIRS=plugins/gcc11 sdl2 sdl2_ttf sdl2_image sdl2_mixer gettext
           cd ..
           wget https://github.com/Qrox/libbacktrace/releases/download/2020-01-03/libbacktrace-i686-w64-mingw32.tar.gz
-          tar -xzf libbacktrace-i686-w64-mingw32.tar.gz --exclude=LICENSE -C ~/mxe/usr/i686-w64-mingw32.static
+          tar -xzf libbacktrace-i686-w64-mingw32.tar.gz --exclude=LICENSE -C ./mxe/usr/i686-w64-mingw32.static
 
       # - name: Install Qt
       #   uses: jurplel/install-qt-action@v3
@@ -39,8 +39,8 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1.2
       - name: Build
         run: |
-          export PLATFORM_32="~/src/mxe/usr/bin/i686-w64-mingw32.static-"
-          make -j 10 ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
+          export PLATFORM_32="./mxe/usr/bin/i686-w64-mingw32.static-"
+          make -j 10 CROSS="${PLATFORM_32}" ASTYLE=0 CCACHE=1 CLANG=1 LINTJSON=0 LOCALIZE=0 LOT=0 PCH=0 RELEASE=1 RUNTESTS=0 TILES=1
           # make object_creator -j 10 RELEASE=1 CCACHE=1 CXXFLAGS="-static -static-libgcc -static-libstdc++"
           # ccache -C
       - name: Package & post
