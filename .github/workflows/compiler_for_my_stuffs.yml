@@ -115,25 +115,6 @@ jobs:
           & "C:\msys64\mingw64\bin\mingw32-make" -C lang -j2
           mkdir -p ./data/mods/TEST_DATA/lang/mo/ru/LC_MESSAGES -ErrorAction SilentlyContinue
           msgfmt -f -o ./data/mods/TEST_DATA/lang/mo/ru/LC_MESSAGES/TEST_DATA.mo ./data/mods/TEST_DATA/lang/po/ru.po
-    - name: Enable GitHub Actions problem matchers
-      run: |
-          Write-Output "::add-matcher::build-scripts/problem-matchers/catch2.json"
-          Write-Output "::add-matcher::build-scripts/problem-matchers/debugmsg.json"
-    - name: Dump disk usage logs if job failed
-      if: failure()
-      run: |
-        echo =================================================
-        df
-        echo =================================================
-        du -sh *
-        echo =================================================
-        du -sh msvc-full-features/*
-        echo =================================================
-        du -sh msvc-object_creator/*
-        echo =================================================
-        du -sh tools/*
-        echo =================================================
-      shell: bash
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
