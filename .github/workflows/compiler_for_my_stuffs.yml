@@ -101,6 +101,7 @@ jobs:
         New-Item -ItemType SymbolicLink -Target "$env:TEMP\objwin" objwin
     - name: Build
       run: |
+          pwd
           msbuild -m -p:Configuration=Release -p:Platform=x64 "-target:Cataclysm-vcpkg-static;Cataclysm-test-vcpkg-static;JsonFormatter-vcpkg-static" msvc-full-features/Cataclysm-vcpkg-static.sln
           msbuild -m -p:Configuration=Release -p:Platform=x64 "-target:ObjectCreator-vcpkg-static" msvc-object_creator/ObjectCreator-vcpkg-static.sln
     - name: Post-build ccache manipulation
