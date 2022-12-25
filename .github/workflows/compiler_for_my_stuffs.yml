@@ -99,10 +99,6 @@ jobs:
           ${{ env.CDDA_CCACHE_PATH }}\ccache.exe -M ${{ env.CCACHE_LIMIT }}
           ${{ env.CDDA_CCACHE_PATH }}\ccache.exe -c
           ${{ env.CDDA_CCACHE_PATH }}\ccache.exe -s -v
-      - name: clear ccache on PRs
-        if: ${{ github.ref_name != 'master' }}
-        run: |
-         ${{ env.CDDA_CCACHE_PATH }}\ccache.exe -C
       - name: Dump vcpkg logs if build failed
         if: failure()
         run: |
