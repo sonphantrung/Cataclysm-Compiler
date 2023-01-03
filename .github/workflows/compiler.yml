@@ -39,7 +39,7 @@ jobs:
       - name: Package & post
         run: |
           # zip -r object-creator.zip object_creator/
-          # zip cataclysm-tiles.zip cataclysm-tiles
+          zip cataclysm-tiles.zip cataclysm-tiles
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
