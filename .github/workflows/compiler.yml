@@ -5,6 +5,14 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+    inputs:
+      target-repo:
+        description: 'Target repository for compilation'
+        required: false
+        default: CleverRaven
+        type: choice
+        options:
+          - 'casswedson'
 
 concurrency:
   group: cataclysm-build
@@ -19,8 +27,7 @@ jobs:
       - name: Clone CDDA
         uses: actions/checkout@v3
         with:
-          repository: CleverRaven/Cataclysm-DDA
-          # repository: casswedson/Cataclysm-DDA
+          repository: ${{inputs.target-repo}}/Cataclysm-DDA
           fetch-depth: 1
           ref: master
       - run: |
