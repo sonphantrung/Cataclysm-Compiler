@@ -9,7 +9,7 @@ on:
       target-repo:
         description: 'Target repository for compilation'
         required: false
-        default: CleverRaven
+        default: 'CleverRaven'
         type: choice
         options:
           - 'casswedson'
