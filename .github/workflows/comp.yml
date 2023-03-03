@@ -1,24 +1,3 @@
-Skip to content
-sonphantrung
-/
-Cataclysm-Compiler
-Public
-forked from casswedson/Cataclysm-Compiler
-Code
-Pull requests
-1
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Beta Try the new code view
-Cataclysm-Compiler/workflows/comp.yml
-@sonphantrung
-sonphantrung Create comp.yml
- 1 contributor
-130 lines (119 sloc)  5.33 KB
 # References: github.com/CleverRaven/Cataclysm-DDA/blob/master/.github/workflows/msvc-full-features.yml
 name: Cataclysm Compiler
 
