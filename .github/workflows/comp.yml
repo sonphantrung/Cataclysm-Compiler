@@ -115,6 +115,7 @@ jobs:
         ${{ env.CDDA_CCACHE_PATH }}\ccache.exe -s -v
     - name: get datetime vars
       id: datetime-vars
+      shell: bash
       run: |
           echo "datetime=$(/bin/date -u +"%Y/%m/%d/%H%M")" >> $GITHUB_OUTPUT
     - name: Compile .mo files for localization
@@ -128,18 +129,3 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ./Cataclysm*.exe
         tag: ${{steps.datetime-vars.outputs.datetime}}
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Cataclysm-Compiler/comp.yml at main · sonphantrung/Cataclysm-Compiler
