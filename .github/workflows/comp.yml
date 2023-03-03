@@ -129,3 +129,4 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ./Cataclysm*.exe
         tag: ${{steps.datetime-vars.outputs.datetime}}
+        file_glob: true
