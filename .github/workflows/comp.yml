@@ -123,8 +123,9 @@ jobs:
           & "C:\msys64\mingw64\bin\mingw32-make" -C lang -j2
           mkdir -p ./data/mods/TEST_DATA/lang/mo/ru/LC_MESSAGES -ErrorAction SilentlyContinue
           msgfmt -f -o ./data/mods/TEST_DATA/lang/mo/ru/LC_MESSAGES/TEST_DATA.mo ./data/mods/TEST_DATA/lang/po/ru.po
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@2.5.0
       with:
-        name: cataclysm-tiles-binary
-        path: .\Cataclysm*.exe
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: .\Cataclysm-tiles.exe
+        tag: ${{steps.datetime-vars.outputs.datetime}}
