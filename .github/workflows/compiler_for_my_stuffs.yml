@@ -35,7 +35,7 @@ jobs:
       with:
         fetch-depth: 1
         repository: sonphantrung/Cataclysm-DDA
-        ref: force-replace
+        ref: moar-groups
 
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
