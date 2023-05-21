@@ -32,9 +32,11 @@ jobs:
           repository: ${{inputs.target-repo}}/Cataclysm-DDA
           fetch-depth: 1
           ref: master
-      - run: |
-          sudo apt-get update
-          sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev clang ccache
+
+      - name: Install Dependencies
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev clang ccache
 
       # - name: Install Qt
       #   uses: jurplel/install-qt-action@v3
