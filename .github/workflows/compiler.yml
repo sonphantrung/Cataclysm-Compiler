@@ -50,6 +50,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: cataclysm-tiles.zip
+          name: cataclysm-tiles
           path: ./cataclysm-tiles
           # path: ./object-creator.zip
