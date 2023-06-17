@@ -49,7 +49,7 @@ jobs:
           # ccache -C
       - name: Package & post
         run: |
-          unzip cataclysm-tiles.zip cataclysm-tiles
+          unzip cataclysm-tiles cataclysm-tiles.zip
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
