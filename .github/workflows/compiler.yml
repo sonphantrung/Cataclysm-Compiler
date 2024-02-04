@@ -1,9 +1,9 @@
-# References: https://github.com/CleverRaven/Cataclysm-DDA/blob/master/.github/workflows/matrix.yml
+# Reference: https://github.com/CleverRaven/Cataclysm-DDA/blob/master/.github/workflows/matrix.yml
 name: Cataclysm Compiler
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       target-repo:
@@ -27,7 +27,7 @@ jobs:
     steps:
       # - uses: actions/checkout@v3
       - name: Clone CDDA
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{inputs.target-repo}}/Cataclysm-DDA
           fetch-depth: 1
@@ -51,7 +51,7 @@ jobs:
         run: |
           zip cataclysm-tiles.zip cataclysm-tiles
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cataclysm-tiles
           path: ./cataclysm-tiles.zip
