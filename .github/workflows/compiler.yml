@@ -2,8 +2,6 @@
 name: Cataclysm Compiler
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
     inputs:
       target-repo:
