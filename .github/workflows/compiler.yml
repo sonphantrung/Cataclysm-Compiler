@@ -42,7 +42,7 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1.2
       - name: Build
         run: |
-          make -j 10 CCACHE=1 RELEASE=1 TILES=1 ASTYLE=0 LINTJSON=0 LOCALIZE=0 TESTS=0
+          make -j 10 CCACHE=1 RELEASE=1 TILES=1 SOUND=1 ASTYLE=0 LINTJSON=0 LOCALIZE=0 TESTS=0
           # make object_creator -j 10 RELEASE=1 CCACHE=1 CXXFLAGS="-static -static-libgcc -static-libstdc++"
           # ccache -C
       - name: Package & post
