@@ -2,6 +2,8 @@
 name: Cataclysm Compiler
 
 on:
+  schedule:
+    - cron: '0 20 * * *'
   workflow_dispatch:
     inputs:
       target-repo:
