@@ -2,8 +2,6 @@
 name: Cataclysm Compiler
 
 on:
-  schedule:
-    - cron: '0 20 * * *'
   workflow_dispatch:
     inputs:
       target-repo:
@@ -12,6 +10,7 @@ on:
         default: 'CleverRaven'
         type: choice
         options:
+          - 'sonphantrung'
           - 'casswedson'
           - 'CleverRaven'
           - 'NOPE'
