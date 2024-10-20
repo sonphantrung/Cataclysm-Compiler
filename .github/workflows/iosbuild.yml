@@ -53,7 +53,7 @@ jobs:
         run: |
           mkdir -p build/libs/headers
           wget https://github.com/sonphantrung/sdl2ios-compiler/releases/download/SDL2oniOS/sdl2ios.zip
-          unzip sdl2ios.zip build/libs
+          unzip sdl2ios.zip -d build/libs
           git clone --depth=1 -b release-2.30.8 https://github.com/libsdl-org/SDL
           git clone --depth=1 -b release-2.8.2 https://github.com/libsdl-org/SDL_image
           git clone --depth=1 -b release-2.22.0 https://github.com/libsdl-org/SDL_ttf
