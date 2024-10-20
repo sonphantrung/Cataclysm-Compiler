@@ -56,4 +56,4 @@ jobs:
         run: |
           git clone --branch release-2.30.8 --depth=1 https://github.com/libsdl-org/SDL
           cd SDL/Xcode/SDL
-          xcodebuild -list -project SDL.xcodeproj
+          xcodebuild -scheme Framework-iOS build
