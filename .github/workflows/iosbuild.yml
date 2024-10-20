@@ -54,6 +54,6 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1.2
       - name: something
         run: |
-          git clone --depth=1 https://github.com/libsdl-org/SDL
+          git clone --branch release-2.30.8 --depth=1 https://github.com/libsdl-org/SDL
           cd SDL/Xcode/SDL
-          xcodebuild -list -project SDL.xcodeproj
+          xcodebuild -scheme SDL2 build
