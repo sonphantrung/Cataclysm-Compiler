@@ -56,9 +56,11 @@ jobs:
         run: |
           git clone --branch release-2.30.8 --depth=1 https://github.com/libsdl-org/SDL
           cd SDL/Xcode/SDL
-          xcodebuild -scheme Framework-iOS build
-      - name: upload artis
-        uses: actions/upload-artifact@v4
-        with:
-          name: sdl
-          path: SDL/
+          xcrun xcodebuild -configuration "Release" -project SDL.xcodeproj -target libSDL-iOS -sdk "iphoneos" build \
+                  ONLY_ACTIVE_ARCH=NO \
+                  RUN_CLANG_STATIC_ANALYZER=NO \
+                  BUILD_DIR="build/SDL" \
+                  SYMROOT="build/SDL" \
+                  OBJROOT="build/SDL/obj" \
+                  BUILD_ROOT="build/SDL" \
+                  TARGET_BUILD_DIR="build/SDL"
