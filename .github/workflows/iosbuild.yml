@@ -57,3 +57,8 @@ jobs:
           git clone --branch release-2.30.8 --depth=1 https://github.com/libsdl-org/SDL
           cd SDL/Xcode/SDL
           xcodebuild -scheme Framework-iOS build
+      - name: upload artis
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdl
+          path: SDL/
