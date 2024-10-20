@@ -52,15 +52,23 @@ jobs:
           xcode-version: 14.3.1
       - name: ccache
         uses: hendrikmuhs/ccache-action@v1.2
-      - name: something
+      - name: fetch sdl2 libs
         run: |
-          git clone --branch release-2.30.8 --depth=1 https://github.com/libsdl-org/SDL
-          cd SDL/Xcode/SDL
-          xcrun xcodebuild -configuration "Release" -project SDL.xcodeproj -target "Static Library-iOS" -sdk "iphoneos" build \
-                  ONLY_ACTIVE_ARCH=NO \
-                  RUN_CLANG_STATIC_ANALYZER=NO \
-                  BUILD_DIR="build/SDL" \
-                  SYMROOT="build/SDL" \
-                  OBJROOT="build/SDL/obj" \
-                  BUILD_ROOT="build/SDL" \
-                  TARGET_BUILD_DIR="build/SDL"
+          mkdir -p build/libs/headers
+          wget https://github.com/sonphantrung/sdl2ios-compiler/releases/download/SDL2oniOS/sdl2ios.zip
+          unzip sdl2ios.zip build/libs
+          git clone --depth=1 -b release-2.30.8 https://github.com/libsdl-org/SDL
+          git clone --depth=1 -b release-2.8.2 https://github.com/libsdl-org/SDL_image
+          git clone --depth=1 -b release-2.22.0 https://github.com/libsdl-org/SDL_ttf
+          git clone --depth=1 -b release-2.8.0 https://github.com/libsdl-org/SDL_mixer
+          cp -f SDL2/include/*.h build/libs/headers
+          cp -f SDL2_image/include/*.h build/libs/headers
+          cp -f SDL2_mixer/include/*.h build/libs/headers
+          cp -f SDL2_ttf/SDL_ttf.h build/libs/headers
+      - name: xcodegen moment
+        run: |
+          cd build-scripts
+          xcodegen -s xcodegen-cataclysm.yml -p ../build
+           
+          
+          
