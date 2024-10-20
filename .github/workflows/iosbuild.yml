@@ -65,6 +65,7 @@ jobs:
       - name: xcodegen moment
         run: |
           cd build-scripts
+          cp xcode_dev_id_example.yml xcode_dev_id.yml
           xcodegen -s xcodegen-cataclysm.yml -p ../build
            
           
