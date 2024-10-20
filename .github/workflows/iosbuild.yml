@@ -1,0 +1,59 @@
+# Reference: https://github.com/CleverRaven/Cataclysm-DDA/blob/master/.github/workflows/matrix.yml
+name: Cataclysm Compiler
+
+on:
+  workflow_dispatch:
+    inputs:
+      target-repo:
+        description: 'Target repository for compilation'
+        required: true
+        default: 'CleverRaven'
+        type: choice
+        options:
+          - 'sonphantrung'
+          - 'casswedson'
+          - 'CleverRaven'
+          - 'NOPE'
+
+env:
+  target-repo: CleverRaven
+
+concurrency:
+  group: cataclysm-build
+  cancel-in-progress: true
+
+jobs:
+  linux-compiler:
+    continue-on-error: true
+    runs-on: macos-13
+    steps:
+
+      - name: Clone CDDA
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.target-repo || inputs.target-repo }}/Cataclysm-DDA
+          fetch-depth: 1
+          ref: master
+
+      - name: Install runtime dependencies (mac)
+        uses: BrettDong/setup-sdl2-frameworks@v2
+        with:
+          sdl2: latest
+          sdl2-ttf: latest
+          sdl2-image: latest
+          sdl2-mixer: latest
+      - name: Install build dependencies (mac)
+        run: |
+          HOMEBREW_NO_AUTO_UPDATE=yes HOMEBREW_NO_INSTALL_CLEANUP=yes brew install gettext ccache parallel dylibbundler xcodegen
+          pip3 install dmgbuild biplist
+      - name: Setup XCode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 14.3.0
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+      - name: something
+        run: |
+          git clone --depth=1 https://github.com/libsdl-org/SDL
+          cd SDL/Xcode
+          xcodebuild -list -project <SDL>.xcodeproj
