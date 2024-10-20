@@ -67,6 +67,12 @@ jobs:
           cd build-scripts
           cp xcode_dev_id_example.yml xcode_dev_id.yml
           xcodegen -s xcodegen-cataclysm.yml -p ../build
-           
-          
-          
+      - name: Build IPA
+        run: |
+          cd build
+          xcrun xcodebuild -project CataclysmExperimental.xcodeproj -scheme CataclysmExperimental -sdk iphoneos \
+                                    archive -archivePath ./archive \
+                                    CODE_SIGNING_REQUIRED=NO \
+                                    AD_HOC_CODE_SIGNING_ALLOWED=YES \
+                                    CODE_SIGNING_ALLOWED=NO \
+                                    DWARF_DSYM_FOLDER_PATH="."
