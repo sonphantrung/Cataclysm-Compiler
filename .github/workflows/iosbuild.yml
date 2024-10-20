@@ -15,9 +15,6 @@ on:
           - 'CleverRaven'
           - 'NOPE'
 
-env:
-  target-repo: CleverRaven
-
 concurrency:
   group: cataclysm-build
   cancel-in-progress: true
@@ -31,7 +28,7 @@ jobs:
       - name: Clone CDDA
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.target-repo || inputs.target-repo }}/Cataclysm-DDA
+          repository: ${{ inputs.target-repo }}/Cataclysm-DDA
           fetch-depth: 1
           ref: ios-build
 
