@@ -69,6 +69,8 @@ jobs:
           xcodegen -s xcodegen-cataclysm.yml -p ../build
       - name: Build IPA
         run: |
+          make version
+          make prefix
           cd build
           xcrun xcodebuild -project CataclysmExperimental.xcodeproj -scheme CataclysmExperimental -sdk iphoneos \
                                     archive -archivePath ./archive \
