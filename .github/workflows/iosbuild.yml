@@ -55,5 +55,5 @@ jobs:
       - name: something
         run: |
           git clone --depth=1 https://github.com/libsdl-org/SDL
-          cd SDL/Xcode
+          cd SDL/Xcode/SDL
           xcodebuild -list -project SDL.xcodeproj
