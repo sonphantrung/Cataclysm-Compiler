@@ -33,7 +33,7 @@ jobs:
         with:
           repository: ${{ env.target-repo || inputs.target-repo }}/Cataclysm-DDA
           fetch-depth: 1
-          ref: master
+          ref: ios-build
 
       - name: Install runtime dependencies (mac)
         uses: BrettDong/setup-sdl2-frameworks@v2
