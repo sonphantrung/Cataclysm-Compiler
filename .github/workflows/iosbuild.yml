@@ -78,7 +78,13 @@ jobs:
                                     AD_HOC_CODE_SIGNING_ALLOWED=YES \
                                     CODE_SIGNING_ALLOWED=NO \
                                     DWARF_DSYM_FOLDER_PATH="."
+      - name: actually packing the IPA archive
+        run: |
+          mkdir Payload
+          mkdir Payload/CataclysmExperimental.app
+          cp -R build/archive.xcarchive/Products/Applications/CataclysmExperimental.app/ Payload/CataclysmExperimental.app/
+          zip -r cddaios.ipa Payload
       - uses: actions/upload-artifact@v4
         with:
           name: cdda
-          path: build/
+          path: cddaios.ipa
