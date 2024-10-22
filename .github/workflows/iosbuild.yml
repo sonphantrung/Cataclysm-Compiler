@@ -31,14 +31,6 @@ jobs:
           repository: ${{ inputs.target-repo }}/Cataclysm-DDA
           fetch-depth: 1
           ref: ios-build
-
-      - name: Install runtime dependencies (mac)
-        uses: BrettDong/setup-sdl2-frameworks@v2
-        with:
-          sdl2: latest
-          sdl2-ttf: latest
-          sdl2-image: latest
-          sdl2-mixer: latest
       - name: Install build dependencies (mac)
         run: |
           HOMEBREW_NO_AUTO_UPDATE=yes HOMEBREW_NO_INSTALL_CLEANUP=yes brew install gettext ccache parallel dylibbundler xcodegen
@@ -84,7 +76,11 @@ jobs:
           mkdir Payload/CataclysmExperimental.app
           cp -R build/archive.xcarchive/Products/Applications/CataclysmExperimental.app/ Payload/CataclysmExperimental.app/
           zip -r cddaios.ipa Payload
-      - uses: actions/upload-artifact@v4
+      - name: Create release
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          name: cdda
-          path: cddaios.ipa
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "latest"
+          title: "CDDA iOS Build"
+          files: cddaios.ipa
