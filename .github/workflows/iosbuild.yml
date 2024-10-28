@@ -22,7 +22,7 @@ concurrency:
 jobs:
   linux-compiler:
     continue-on-error: true
-    runs-on: macos-14
+    runs-on: macos-13
     steps:
 
       - name: Clone CDDA
