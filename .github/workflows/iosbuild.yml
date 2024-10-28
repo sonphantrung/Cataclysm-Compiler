@@ -63,7 +63,7 @@ jobs:
           make version
           make prefix
           cd build
-          xcrun xcodebuild -project CataclysmExperimental.xcodeproj -scheme CataclysmExperimental -sdk iphoneos \
+          xcrun xcodebuild -project CataclysmExperimental.xcodeproj -scheme CataclysmExperimental -sdk iphoneos17.0 \
                                     archive -archivePath ./archive \
                                     CODE_SIGNING_REQUIRED=NO \
                                     AD_HOC_CODE_SIGNING_ALLOWED=YES \
