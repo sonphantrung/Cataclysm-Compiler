@@ -59,6 +59,13 @@ jobs:
           cd build-scripts
           cp xcode_dev_id_example.yml xcode_dev_id.yml
           xcodegen -s xcodegen-cataclysm.yml -p ../build
+      - name: Generating headers
+        run: |
+          cd src/swift
+          swiftc -frontend -typecheck \
+                 ScreenStuffs -module-name ScreenStuffs \
+                 -cxx-interoperability-mode=default \
+                 -emit-clang-header-path ScreenStuffs-Swift.h
       - name: Build IPA
         run: |
           make version
