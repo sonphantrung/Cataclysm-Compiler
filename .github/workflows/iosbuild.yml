@@ -63,7 +63,7 @@ jobs:
         run: |
           cd src/swift
           swiftc -frontend -typecheck \
-                 ScreenStuffs -module-name ScreenStuffs \
+                 ScreenStuffs.swift -module-name ScreenStuffs \
                  -cxx-interoperability-mode=default \
                  -emit-clang-header-path ScreenStuffs-Swift.h
       - name: Build IPA
