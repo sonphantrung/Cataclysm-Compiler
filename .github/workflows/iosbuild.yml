@@ -58,10 +58,6 @@ jobs:
           cd build-scripts
           cp xcode_dev_id_example.yml xcode_dev_id.yml
           xcodegen -s xcodegen-cataclysm.yml -p ../build
-      - name: Workarounding the lib errors
-        run: |
-          cp /Applications/Xcode_15.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk/usr/lib/libllvm-flatbuffers.dylib /Applications/Xcode_15.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libllvm-flatbuffers.dylib
-          cp /Applications/Xcode_15.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk/usr/lib/libllvm-flatbuffers.tbd /Applications/Xcode_15.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libllvm-flatbuffers.tbd
       - name: Build IPA
         run: |
           make version
