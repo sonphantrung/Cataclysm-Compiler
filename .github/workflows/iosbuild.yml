@@ -35,7 +35,7 @@ jobs:
         run: |
           HOMEBREW_NO_AUTO_UPDATE=yes HOMEBREW_NO_INSTALL_CLEANUP=yes brew install gettext ccache parallel dylibbundler xcodegen
       - name: Setup XCode
-        uses: maxim-lobanov/setup-xcode@v1
+        uses: maxim-lobanov/setup-xcode@v1.6.0
         with:
           xcode-version: 15.0.1
       - name: ccache
@@ -68,7 +68,7 @@ jobs:
                                     CODE_SIGNING_REQUIRED=NO \
                                     AD_HOC_CODE_SIGNING_ALLOWED=YES \
                                     CODE_SIGNING_ALLOWED=NO \
-                                    DWARF_DSYM_FOLDER_PATH="."
+                                    DWARF_DSYM_FOLDER_PATH="." | xcpretty && exit ${PIPESTATUS[0]}
       - name: actually packing the IPA archive
         run: |
           mkdir Payload
