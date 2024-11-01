@@ -69,7 +69,7 @@ jobs:
                                     CODE_SIGNING_REQUIRED=NO \
                                     AD_HOC_CODE_SIGNING_ALLOWED=YES \
                                     CODE_SIGNING_ALLOWED=NO \
-                                    DWARF_DSYM_FOLDER_PATH="." | xcpretty && exit ${PIPESTATUS[0]}
+                                    DWARF_DSYM_FOLDER_PATH="."
       - name: actually packing the IPA archive
         run: |
           mkdir Payload
