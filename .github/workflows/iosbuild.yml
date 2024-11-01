@@ -42,13 +42,14 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1.2
       - name: fetch sdl2 libs
         run: |
-          mkdir -p build/libs/headers
+          mkdir -p build/libs/
           wget https://github.com/sonphantrung/sdl2ios-compiler/releases/download/SDL2oniOS/sdl2ios.zip
           unzip sdl2ios.zip -d build/libs
           git clone --depth=1 -b release-2.30.8 https://github.com/libsdl-org/SDL
           git clone --depth=1 -b release-2.8.2 https://github.com/libsdl-org/SDL_image
           git clone --depth=1 -b release-2.22.0 https://github.com/libsdl-org/SDL_ttf
           git clone --depth=1 -b release-2.8.0 https://github.com/libsdl-org/SDL_mixer
+          cp -R SDL_ttf/external/freetype/include build/libs/headers
           cp -f SDL/include/*.h build/libs/headers
           cp -f SDL_image/include/*.h build/libs/headers
           cp -f SDL_mixer/include/*.h build/libs/headers
