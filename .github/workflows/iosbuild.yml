@@ -47,7 +47,7 @@ jobs:
           unzip sdl2ios.zip -d build/libs
           git clone --depth=1 -b release-2.30.8 https://github.com/libsdl-org/SDL
           git clone --depth=1 -b release-2.8.2 https://github.com/libsdl-org/SDL_image
-          git clone --depth=1 -b --recurse-submodules release-2.22.0 https://github.com/libsdl-org/SDL_ttf
+          git clone --depth=1 -b release-2.22.0 --recurse-submodules https://github.com/libsdl-org/SDL_ttf
           git clone --depth=1 -b release-2.8.0 https://github.com/libsdl-org/SDL_mixer
           cp -R SDL_ttf/external/freetype/include build/libs/headers
           cp -f SDL/include/*.h build/libs/headers
