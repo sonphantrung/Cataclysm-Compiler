@@ -45,7 +45,7 @@ jobs:
           mkdir -p build/libs/
           wget https://github.com/sonphantrung/sdl2ios-compiler/releases/download/SDL2oniOS/sdl2ios.zip
           unzip sdl2ios.zip -d build/libs
-          git clone --depth=1 -b release-2.30.8 https://github.com/libsdl-org/SDL
+          git clone --depth=1 -b release-2.30.9 https://github.com/libsdl-org/SDL
           git clone --depth=1 -b release-2.8.2 https://github.com/libsdl-org/SDL_image
           git clone --depth=1 -b release-2.22.0 --recurse-submodules https://github.com/libsdl-org/SDL_ttf
           git clone --depth=1 -b release-2.8.0 https://github.com/libsdl-org/SDL_mixer
