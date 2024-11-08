@@ -51,6 +51,7 @@ jobs:
           git clone --depth=1 -b release-2.8.0 https://github.com/libsdl-org/SDL_mixer
           cp -R SDL_ttf/external/freetype/include build/libs/headers
           cp -f SDL/include/*.h build/libs/headers
+          cp -f SDL/src/video/uikit/*.h build/libs/headers
           cp -f SDL_image/include/*.h build/libs/headers
           cp -f SDL_mixer/include/*.h build/libs/headers
           cp -f SDL_ttf/SDL_ttf.h build/libs/headers
